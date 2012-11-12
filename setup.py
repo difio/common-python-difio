@@ -3,8 +3,11 @@
 import os
 from distutils.core import setup
 
+with open('README.rst') as file:
+    long_description = file.read()
+
 setup(
-    name='common-python-difio'
+    name='common-python-difio',
     version='1.0',
     description='Common module for Difio Python clients',
     author='Alexander Todorov',
