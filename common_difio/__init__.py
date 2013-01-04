@@ -52,6 +52,8 @@ def difio_register(data, useragent, excluded_names = []):
     if not data.has_key('pkg_type'):
         data['pkg_type'] = 0 # Python
 
+    if not data.has_key('app_type'):
+        data['app_type'] = 'python-%d.%d.%d' % (sys.version_info[0], sys.version_info[1], sys.version_info[2])
 
     # make a list of package names
     for dist in get_installed_distributions(local_only=True):

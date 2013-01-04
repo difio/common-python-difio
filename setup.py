@@ -8,7 +8,7 @@ with open('README.rst') as file:
 
 setup(
     name='common-python-difio',
-    version='1.3',
+    version='1.3.1',
     description='Common module for Difio Python clients',
     author='Alexander Todorov',
     author_email='atodorov@nospam.dif.io',
