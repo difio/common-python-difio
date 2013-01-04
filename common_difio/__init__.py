@@ -2,7 +2,7 @@
 
 #####################################################################################
 #
-# Copyright (c) 2012, Alexander Todorov <atodorov()dif.io>
+# Copyright (c) 2012-2013, Alexander Todorov <atodorov@nospam.dif.io>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ from exceptions import BaseException
 from pip.util import get_installed_distributions
 
 
-def difio_register(data, useragent):
+def difio_register(data, useragent, excluded_names = []):
     """
         Register to Difio
 
@@ -51,6 +51,14 @@ def difio_register(data, useragent):
 
     if not data.has_key('pkg_type'):
         data['pkg_type'] = 0 # Python
+
+
+    # make a list of package names
+    for dist in get_installed_distributions(local_only=True):
+        # skip some packages if told to
+        if dist.project_name.lower() not in excluded_names:
+            data['installed'].append({'n' : dist.project_name, 'v' : dist.version})
+
 
     json_data = json.dumps(data)
     params = urllib.urlencode({'json_data' : json_data})
